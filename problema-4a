@@ -1,0 +1,58 @@
+#include <iostream>
+
+using namespace std;
+
+void citire(int& n, int*& a)
+{
+    cin >> n;
+    a = new int[100];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> *(a + i);
+    }
+}
+
+void afisare(int n, int* a)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << *(a+i) << " ";
+    }
+}
+
+int suma(int i, int j, int* a)
+{
+    return *(a + i) + *(a + j);
+}
+
+int produs(int i, int j, int* a)
+{
+    return *(a + i) * *(a + j);
+}
+
+void deplasareLaDreapta(int& n, int*& a, int p)
+{
+    n++;
+    for (int i = n; i > p; i--)
+    {
+        *(a + i) = *(a + i - 1);
+    }
+}
+
+void inserare(int& n, int*& a, int k)
+{;
+    for (int i = 0; i < k; i++)
+    {
+        deplasareLaDreapta(n, a, i);
+        *(a + i) = 0;
+    }
+}
+
+int main()
+{
+    int n, * a;
+    citire(n, a);
+    inserare(n, a, 3);
+    afisare(n, a);
+    return 0;
+}
