@@ -1,0 +1,52 @@
+#include <iostream>
+
+using namespace std;
+
+void citire(int& n, int*& a, int &k)
+{
+    cin >> n;
+    a = new int[100];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> *(a + i);
+    }
+    cin >> k;
+}
+
+void afisare(int n, int* a)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << *(a+i) << " ";
+    }
+}
+
+void permutare(int n, int*& a, int p)
+{
+    for (int i = p; i > 0; i--)
+    {
+        *(a + i) = *(a + i - 1);
+    }
+    *(a) = p;
+}
+
+void inlocuire(int n, int*& a, int p)
+{
+    int i = 0;
+    for (int k = n-p; k < n; k++)
+    {
+        int aux = *(a + k);
+        *(a + k) = *(a + i);
+        *(a + i) = aux;
+        i++;
+    }
+}
+
+int main()
+{
+    int n, * a, k;
+    citire(n, a, k);
+    permutare(n, a, k);
+    afisare(n, a);
+    return 0;
+}
