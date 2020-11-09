@@ -34,7 +34,7 @@ int produs(int i, int j, int* a)
 void permutareLaStanga(int n, int*& a, int p)
 {
     int nrOperatii = n - 2*p;
-    while (nrOperatii != 0)
+    while (nrOperatii > 0)
     {
         int aux = *(a + p);
         for (int i = p; i < n - 1; i++)
