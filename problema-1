@@ -1,0 +1,89 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+void citire(int& n)
+{
+    cin >> n;
+}
+
+bool prim(int n)
+{
+    if (n == 1)
+    {
+        return 0;
+    }
+    if (n == 2)
+    {
+        return 1;
+    }
+    else
+    {
+        for (int i = 3; i < sqrt(n); i++)
+        {
+            if (n % i == 0)
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int minim(int n)
+{
+    int min = 9;
+    while (n != 0)
+    {
+        if (n % 10 < min)
+        {
+            min = n % 10;
+        }
+        n /= 10;
+    }
+    return min;
+}
+
+void afisare(int n, int* a)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << *(a+i) << " ";
+    }
+}
+
+void inlocuire(int n)
+{
+    char numar[100];
+    int min = minim(n), nrPrim=prim(n);
+    _itoa(n, numar, 10);
+    for (int i = 0; i < strlen(numar); i++) ///ce facem in cazul in care minimul = 0? se sterge prima cifra? se pastreaza prima cifra? problema nu specifica...
+    {
+        if (i % 2 == 0)
+        {
+            numar[i] = min + '0';
+        }
+        else
+        {
+            if (nrPrim)
+            {
+                numar[i] = '1';
+            }
+            else
+            {
+                numar[i] = '0';
+            }
+        }
+    }
+    cout << numar;
+}
+
+
+int main()
+{
+    int n;
+    citire(n);
+    inlocuire(n);
+    return 0;
+}
